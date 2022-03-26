@@ -14,18 +14,15 @@
         let
           pkgs = import nixpkgs {
             inherit system;
+            overlays = [ self.overlays.default ];
           };
         in
         {
           packages = {
-            asusctl = pkgs.callPackage ./pkgs/asusctl { };
-            supergfxctl = pkgs.callPackage ./pkgs/supergfxctl { };
-            gnome-text-editor = pkgs.callPackage ./pkgs/gnome-text-editor { };
-          };
-          overlays = final: prev: {
-            # Inherit the packages into the overlay
-            inherit (self.packages.${system})
-              asusctl supergfxctl gnome-text-editor;
+            inherit (pkgs)
+              asusctl
+              supergfxctl
+              gnome-text-editor;
           };
         }
       ) //
@@ -33,6 +30,11 @@
       nixosModules = {
         asusctl = import ./modules/asusctl.nix;
         supergfxctl = import ./modules/supergfxctl.nix;
+      };
+      overlays.default = final: prev: {
+        asusctl = final.callPackage ./pkgs/asusctl { };
+        supergfxctl = final.callPackage ./pkgs/supergfxctl { };
+        gnome-text-editor = final.callPackage ./pkgs/gnome-text-editor { };
       };
     };
 }
