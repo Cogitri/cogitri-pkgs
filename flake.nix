@@ -28,8 +28,8 @@
       ) //
     {
       nixosModules = {
-        asusctl = import ./modules/asusctl.nix;
-        supergfxctl = import ./modules/supergfxctl.nix;
+        asusd = import ./modules/asusd.nix;
+        supergfxd = import ./modules/supergfxd.nix;
       };
       overlays.default = final: prev: {
         asusctl = final.callPackage ./pkgs/asusctl { };

@@ -3,21 +3,21 @@
 with lib;
 
 let
-  cfg = config.services.supergfxctl;
-  configFile = pkgs.writeText "supergfxd.conf" (builtins.toJSON {
+  cfg = config.services.supergfxd;
+  configFile = pkgs.writeText "supergfxd.conf" (builtins.toJSON ({
     gfx_mode = cfg.gfx-mode;
     gfx_managed = cfg.gfx-managed;
     gfx_vfio_enable = cfg.gfx-vfio-enable;
-  });
+  }));
 in
 {
   ###### interface
 
   options = {
-    services.supergfxctl = {
+    services.supergfxd = {
       enable = mkOption {
         description = ''
-          Enable this option to enable control of GPU modes with supergfxctl.
+          Enable this option to enable control of GPU modes with supergfxd.
 
           This permits you to switch between integrated, hybrid and dedicated
           graphics modes on supported laptops.
@@ -45,7 +45,7 @@ in
 
   ###### implementation
 
-  config = mkIf config.services.supergfxctl.enable {
+  config = mkIf config.services.supergfxd.enable {
     environment.systemPackages = with pkgs; [ supergfxctl ];
     services.dbus.packages = with pkgs; [ supergfxctl ];
     services.udev.packages = with pkgs; [ supergfxctl ];
