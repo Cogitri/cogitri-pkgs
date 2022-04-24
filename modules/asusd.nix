@@ -28,19 +28,21 @@ with lib;
 
   ###### implementation
 
-  config = mkIf config.services.asusd.enable {
-    services.supergfxd.enable = true;
-    services.power-profiles-daemon.enable = true;
-    environment.systemPackages = with pkgs; [ asusctl ];
-    services.dbus.packages = with pkgs; [ asusctl ];
-    services.udev.packages = with pkgs; [ asusctl ];
-    systemd.packages = with pkgs; [ asusctl ];
-    mkIf config.services.asusd.enable-power-profiles-daemon {
+  config = mkIf config.services.asusd.enable (mkMerge [
+    (
+      services.supergfxd.enable = true;
+      services.power-profiles-daemon.enable = true;
+      environment.systemPackages = with pkgs; [ asusctl ];
+      services.dbus.packages = with pkgs; [ asusctl ];
+      services.udev.packages = with pkgs; [ asusctl ];
+      systemd.packages = with pkgs; [ asusctl ];
+    )
+    (mkIf config.services.asusd.enable-power-profiles-daemon {
       services.power-profiles-daemon.enable = true;
       systemd.services.power-profiles-daemon = {
         enable = true;
         wantedBy = [ "multi-user.target" ];
       };
-    };
-  };
+    })
+  ]);
 }
