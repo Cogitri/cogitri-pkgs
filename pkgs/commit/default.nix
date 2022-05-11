@@ -44,6 +44,8 @@ stdenv.mkDerivation rec {
     gobject-introspection
   ];
 
+  dontPatchShebangs = true;
+
   meta = with lib; {
     homepage = "https://commit.sonny.re/";
     description = "Commit message editor";
