@@ -44,6 +44,12 @@ stdenv.mkDerivation rec {
     gobject-introspection
   ];
 
+  postPatch = ''
+    substituteInPlace src/re.sonny.Commit \
+      --replace "/usr/bin/env -S gjs" ${gjs}/bin/gjs
+  '';
+
+
   dontPatchShebangs = true;
 
   meta = with lib; {
