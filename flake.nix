@@ -22,7 +22,8 @@
             inherit (pkgs)
               asusctl
               supergfxctl
-              gnome-text-editor;
+              gnome-text-editor
+              commit;
           };
         }
       ) //
@@ -35,6 +36,7 @@
         asusctl = final.callPackage ./pkgs/asusctl { };
         supergfxctl = final.callPackage ./pkgs/supergfxctl { };
         gnome-text-editor = final.callPackage ./pkgs/gnome-text-editor { };
+        commit = final.callPackage ./pkgs/commit { };
       };
     };
 }
