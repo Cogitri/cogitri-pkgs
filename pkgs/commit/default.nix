@@ -1,5 +1,6 @@
 { stdenv
 , lib
+, desktop-file-utils
 , meson
 , ninja
 , gettext
@@ -26,6 +27,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
+    desktop-file-utils
     gettext
     meson
     ninja
