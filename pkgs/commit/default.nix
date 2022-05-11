@@ -8,6 +8,7 @@
 , pkg-config
 , gnome
 , gtk4
+, gtksourceview5
 , gobject-introspection
 , wrapGAppsHook
 , fetchFromGitHub
@@ -39,6 +40,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     gjs
     gtk4
+    gtksourceview5
     libadwaita
     gnome.adwaita-icon-theme
     gobject-introspection
