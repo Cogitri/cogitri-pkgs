@@ -27,6 +27,11 @@ stdenv.mkDerivation rec {
     hash = "sha256-nnjHuE7MzCuoPfCb4MA00BIzLPbhgR6mbeWYagmNjME=";
   };
 
+  patches = [
+    ./always-use-latest.patch
+  ];
+
+
   nativeBuildInputs = [
     desktop-file-utils
     gettext
