@@ -22,6 +22,7 @@ stdenv.mkDerivation rec {
     owner = "sonnyp";
     repo = "Commit";
     rev = "v${version}";
+    hash = "sha256-nnjHuE7MzCuoPfCb4MA00BIzLPbhgR6mbeWYagmNjME=";
   };
 
   nativeBuildInputs = [
