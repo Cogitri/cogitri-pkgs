@@ -4,13 +4,11 @@
 , meson
 , ninja
 , gettext
-, python3
 , pkg-config
-, gnome
 , gtk4
 , gtksourceview5
 , gobject-introspection
-, wrapGAppsHook
+, wrapGAppsHook4
 , fetchFromGitHub
 , gjs
 , libadwaita
@@ -38,8 +36,7 @@ stdenv.mkDerivation rec {
     meson
     ninja
     pkg-config
-    python3
-    wrapGAppsHook
+    wrapGAppsHook4
   ];
 
   buildInputs = [
@@ -47,7 +44,6 @@ stdenv.mkDerivation rec {
     gtk4
     gtksourceview5
     libadwaita
-    gnome.adwaita-icon-theme
     gobject-introspection
   ];
 
